@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block titulo %}Care Turnos{% endblock titulo %} </title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/publica/css/styles.css'%}?v={% now 'U' %}">
+    {% block css %}{% endblock css %}
+</head>
+<body>
+    <header>
+        <img src="{% static '/img/logo.jpg'%}" alt="Care Turnos">
+    </header>
+
+    <main>
+        {% block contenido %}
+
+        {% endblock contenido %}
+    </main>
+
+    {% include "./footer.html" %}
+    <script src="{% static '/publica/js/programacion.js'%}"></script>
+    {% block javascript %}{% endblock javascript %}
+</body>
+</html>

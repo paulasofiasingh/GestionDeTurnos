@@ -54,8 +54,8 @@ ROOT_URLCONF = 'GestionDeTurnos.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [BASE_DIR / 'templates'],
+        'APP_DIRS': False,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -115,7 +115,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+# El debug está en true, busca el directorio static dentro de las aplicaciones
 STATIC_URL = 'static/'
+
+# El debug true, buscar un directorio static dentro del proyecto
+# Desarrollo
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
+# Esto se genera en producción y es la que deberemos crear y Django irá a buscar ahí
+# python manage.py collectstatic
+# STATIC_ROOT = BASE_DIR / 'static_root'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
