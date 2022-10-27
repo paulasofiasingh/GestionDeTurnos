@@ -2,17 +2,20 @@
 
 {% block titulo %}Home | Care Turnos{% endblock titulo %}
 
-{% block contenido %}
-<h1>{{titulo | title }}</h1>
-<p>{{descripcion}}</p>
-<label>Especialidad:</label>
-<select>
-    {% for especialidad in especialidades %}
-    <option>{{especialidad}}</option>
-    {% endfor %}
-</select>
-<label for="ciudad">Ciudad</label>
-<input type="text" id="ciudad" name="ciudad" placeholder="Ej: Balvanera">
-<input type="submit" value="Encontrar">
-
-{% endblock contenido %}
+{% block content %}
+<div class="container-fluid">
+    <h1 class="py-5 text-center">{{ titulo | title }}</h1>
+    <p class="text-center">{{ descripcion }}</p>
+    <div class="text-center py-5">
+        <label>Especialidad:</label>
+        <select>
+            {% for especialidad in especialidades %}
+            <option>{{ especialidad }}</option>
+            {% endfor %}
+        </select>
+        <label for="ciudad">Ciudad</label>
+        <input type="text" id="ciudad" name="ciudad" placeholder="Ej: Balvanera">
+        <input type="submit" value="Encontrar">
+    </div>
+</div>
+{% endblock %}
