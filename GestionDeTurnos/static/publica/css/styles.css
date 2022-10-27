@@ -1,0 +1,41 @@
+nav {
+    background-color: rgb(59, 82, 136);
+    color: white!important;
+}
+nav a {
+    color: white!important;
+}
+.dropdown-menu {
+    background-color:rgb(59, 82, 136);
+}
+.dropdown-item {
+    background-color:rgb(59, 82, 136);
+}
+.dropdown-item:hover {
+    background-color:rgb(96, 123, 185);
+}
+.pad {
+    padding-left: 15%;
+}
+.padr {
+    padding-right: 15%;
+}
+.lh {
+    line-height: normal;
+}
+html,body {
+    margin:0;
+    padding:0;
+  }
+
+footer {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background:rgb(59, 82, 136);
+    color: white;
+}
+
+footer p {
+    margin-bottom: 0px;
+}
