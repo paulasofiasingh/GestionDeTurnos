@@ -2,6 +2,7 @@ from contextvars import Context
 from pipes import Template
 from django.shortcuts import render
 from django.http import HttpResponse
+from gestion.forms import Turnos
 
 
 # Create your views here.
@@ -25,7 +26,13 @@ def index(request):
     return render(request,'gestion/publica/index.html', contexto)
 
 def create(request):
-    pass
+    if (request.method == 'POST'):
+        turno_form = Turnos(request.POST)
+        
+    else:
+        
+        turno_form = Turnos()
+    return render(request, 'gestion/publica/form.html',{'turno_form':turno_form})
 
 def detail(request, id):
     return HttpResponse("Estás viendo el detalle del turno %s." % id)
