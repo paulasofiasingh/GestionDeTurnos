@@ -19,7 +19,7 @@
         <a class="nav-link" href="/">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Servicios</a>
+        <a class="nav-link" href={% url 'create' %}>Crear turno </a>
       </li>
 
       {% if request.user.is_authenticated and request.user.is_medico %}
@@ -54,22 +54,17 @@
 
       {% else %}
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Registracion
+      <li>
+        <a class="nav-link" href={% url 'signup' %} aria-haspopup="true" aria-expanded="false">
+          Registro
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/registracion/medico">Medicos</a>
-          <a class="dropdown-item" href="/registracion/paciente">Pacientes</a>
-          {% comment %} <a class="dropdown-item" href="#">Something else here</a> {% endcomment %}
-        </div>
         {% comment %} <li>
         <button type="button" class="btn btn-white" data-toggle="tooltip" data-placement="right" title="Tooltip on right">
           Tooltip on right
         </button>
         </li> {% endcomment %}
         <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
+          <a class="nav-link" href="/login">Iniciar sesión</a>
         </li>
       </li>
       {% endif %}

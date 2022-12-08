@@ -1,6 +1,7 @@
 {% extends './base.html' %}
 
 {% block content %}
+<h1>Crear turno</h1>
 <form novalidate id="turno-form" name="turno-form" action="{% url 'create' %}" method="POST">
     {% csrf_token %}
 <div class="row" >

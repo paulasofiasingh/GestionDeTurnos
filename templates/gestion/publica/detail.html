@@ -1,0 +1,11 @@
+{% extends './base.html' %}
+
+{% block content %}
+    <h1>Detalle del turno {{turno.id}}</h1>
+    <ul>
+        <li>Dr/a: {{turno.medico}}</li>
+        <li>Paciente: {{turno.paciente}}</li>
+        <li>Fecha: {{turno.fecha}}</li>
+        <li>Observación: {{turno.observacion}}</li>
+    </ul>
+{% endblock  %}

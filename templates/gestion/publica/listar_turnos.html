@@ -1,0 +1,14 @@
+{% extends './base.html' %}
+
+{% block content %}
+<h1>Turnos</h1>
+<ul>
+    {% for turno in turnos%}
+    <li>
+        <a href="{% url 'detail' turno.id %}">
+            {{turno}}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock  %}
