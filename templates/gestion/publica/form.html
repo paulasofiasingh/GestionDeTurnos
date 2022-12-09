@@ -2,6 +2,15 @@
 
 {% block content %}
 <h1>Crear turno</h1>
+{{error}}
+<div class="col-md-6 mb-md-0 mb-6">
+
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
 <form novalidate id="turno-form" name="turno-form" action="{% url 'create' %}" method="POST">
     {% csrf_token %}
 <div class="row" >

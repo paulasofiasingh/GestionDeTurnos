@@ -1,11 +1,32 @@
+{% extends './base.html' %}
+
+{% block content %}
+
 <h1>Registro</h1>
 
-<form action="/registro/" method="POST">
+<form action="/registro/" method="POST" style="border: 1px solid black; margin: 2%; padding:2%; border-radius:1%;">
     {% csrf_token %}
+    {{error}}
+    <br>
+    <br>
+    {% for campo in userform %}
+        <div class="form-group">
+            <label for="">{{campo.label}}</label>
+            <input 
+                type="{{campo.field.widget.input_type}}" 
+                name="{{campo.name}}" 
+                id="{{campo.name}}"
+                class="form-control"
+                placeholder="Ingrese {{campo.name}}"
+                value="{{ campo.value | default:'' }}"
+            >
+        </div>
+        <div>{{campo.errors}}</div>
+    {% endfor %}
 
-    {{userform.as_p}}
-
-    <button>
+    <button class="btn btn-primary">
         Enviar
     </button>
 </form>
+
+{% endblock %}

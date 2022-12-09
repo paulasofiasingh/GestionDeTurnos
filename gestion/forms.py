@@ -4,22 +4,26 @@ from django.contrib.auth import password_validation
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.validators import UnicodeUsernameValidator
-from django.forms import ModelForm
+from django.forms import ModelForm, ValidationError
 from .models import Paciente, Turno, Medico
 
 username_validator = UnicodeUsernameValidator()
 
-class SignUpForm(UserCreationForm):
-    nombre = forms.CharField(max_length=50)
-    apellido = forms.CharField(max_length=50)
+def solo_caracteres(value):
+    if any(char.isdigit() for char in value ):
+        raise ValidationError('El nombre no puede contener números. %(valor)s',
+                            params={'valor':value})
+
+class RegistrarUsuarioForm(UserCreationForm):
+    obra_social = forms.CharField(max_length=150)
+    nombre = forms.CharField(max_length=50, validators=[solo_caracteres])
+    apellido = forms.CharField(max_length=50, validators=[solo_caracteres])
     fecha_nacimiento = forms.DateField(
         label='Fecha de nacimiento', 
-        widget=forms.DateInput(attrs={'class':'form-control','type':'date'}))
-    obra_social = forms.CharField(max_length=150)
-
+        widget=forms.DateInput(attrs={'class':'form-control md-5','type':'date'}))
     class Meta:
         model = User
-        fields = ('nombre', 'apellido', 'fecha_nacimiento', 'obra_social', 'username')
+        fields = ['username', 'password1', 'password2', 'obra_social', 'nombre', 'apellido', 'fecha_nacimiento']
 
 class TurnosForms(forms.ModelForm):
     class Meta:
@@ -32,6 +36,7 @@ class TurnosForms(forms.ModelForm):
     )
     paciente = forms.ModelChoiceField(
         queryset=Paciente.objects.all(),
+        ##queryset=Paciente.objects.filter(usuario=15),
         widget=forms.Select(attrs={'class': 'form-control'})
     )
     fecha = forms.DateField(
@@ -42,29 +47,3 @@ class TurnosForms(forms.ModelForm):
         label='Observaciones',
         max_length=150,
         widget= forms.Textarea(attrs={'rows':5, 'class':'form-control'}))
-
-"""
-class PacienteForm(forms.ModelForm):
-     class Meta:
-        model = Paciente
-        fields = ['nombre', 'apellido', 'fecha_nacimiento', 'obra_social']
-
-        nombre = forms.CharField(
-            max_length=50,
-            label='Nombre'
-        )
-        apellido = forms.CharField(
-            max_length=50,
-            label='Apellido'
-        )
-        fecha_nacimiento = forms.DateField(
-            label='Fecha de nacimiento', 
-            widget=forms.DateInput(attrs={'class':'form-control','type':'date'})
-        )
-        obra_social = forms.CharField(
-            max_length=150,
-            label='Obra social'
-        )
-"""
-
-

@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container-fluid">
-    <h1 class="py-5 text-center">Buscar turno</h1>
+    <h1 class="py-5 text-center">{% filter title %}Buscar turno{% endfilter %}</h1>
     <div class="text-center pb-5">
     <form action="{% url 'buscar' %}" method="GET">
         <input type="text" placeholder="Ingrese el n° de turno" name="buscar">
